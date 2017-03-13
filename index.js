@@ -6,6 +6,7 @@ var pg = require('pg');
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
+app.use('/public', express.static('public'));
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -20,7 +21,7 @@ app.get('/cool', function(request, response) {
 });
 
 //https://devcenter.heroku.com/articles/getting-started-with-nodejs#provision-a-database
-app.get('/db', function (request, response) {
+/*app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function (err, client, done) {
     client.query('SELECT * FROM test_table', function (err, result) {
       done();
@@ -30,7 +31,7 @@ app.get('/db', function (request, response) {
        { response.render('pages/db', {results: result.rows} ); }
     });
   });
-});
+}); */
 
 app.get('/times', function(request, response) {
     var result = ''
