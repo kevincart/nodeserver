@@ -75,7 +75,7 @@
             zoom: 15
           });
 
-        $("#statusBar").html("Finding food near you. (400 meter radius)...")
+        $("#statusBar").html("Finding food near you.  (400 meter radius)...")
       }
 
       // Called by geolocation 'getCurrentPosition()' below...
@@ -86,7 +86,6 @@
         //sets coordinate pair in 'foodFinder'
         foodFinder = new google.maps.LatLng(posLat, posLng)
         //$("#statusBar").html("You are at LAT:" + posLat.toFixed(3) + ", LONG:" + posLng.toFixed(3));
-        $("#statusBar").html("Here are all of the restaurants near you:" + "<br/>");
         makeRequest();
       }
 
@@ -102,8 +101,11 @@
       }
 
       // Callback function from Places API. Gets results, creates DIV elements for each
+      // Checks for callback status OK, populates list w/ results, else, error message
       function callback(results, status) {
+        console.log(status);
         if (status == google.maps.places.PlacesServiceStatus.OK) {
+          $("#statusBar").html("Here are all of the restaurants near you:" + "<br/>");
           for (var i = 0; i < results.length; i++) {
             var place = results[i];
             // console.log(place.name);
@@ -114,6 +116,8 @@
             $(document.getElementById("resultsContainer")).append("</br>");
             $(document.getElementById("resultsContainer")).append(resultDiv);
           }
+        } else {
+          $(document.getElementById("statusBar")).html("Sorry, no restaurants in range.")
         }
       }
 
