@@ -4,154 +4,97 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Food Finder</title>
-  <!-- FAVICON LINKS !-->
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    
-  <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        background-color: #bd3743;
-      }
-      #map {
-        display: none;
-      }
-      #logo {
-        font-family: 'Pacifico', cursive;
-        margin-left: 14px;
-        color: white;
-        font-size: 45px;
-        text-shadow: 2px 2px 5px black;
-        transform: rotate(-7deg);
-      }
-      #header {
-        background-image: linear-gradient(174deg, #ec819a, #bd3743 60%, #bd3743);
-        width: 100%;
-        height: 150px;
-      }
-      p {
-        margin-top: 0px;
-      }
-      #statusBar {
-        color: white;
-        font-family: "Poppins", sans-serif;
-        font-size: 16px;
-        margin: 0px 10px 0px 20px;
-      }
-      #resultsContainer {
-        color: white;
-        font-family: "Poppins", sans-serif;
-        font-size: 16px;
-        margin: 5px 10px 30px 35px;
-      }
-
-    </style>
-  </head>
-  <body>
-    <div id="header">
-      <div id="logo">
-        <p>Food Finder</p>
-      </div>
+  <% include ../partials/favicons.ejs %>
+  <link rel="stylesheet" href="/stylesheets/styles.css" type="text/css">
+</head>
+<body>
+  <div id="header">
+    <div id="logo">
+      <p>Food Finder</p>
     </div>
-    <div id="statusBar"></div>
-    <div id="map"></div>
-    <div id="resultsContainer"></div>
+  </div>
+  <div id="statusBar"></div>
+  <div id="map"></div>
+  <div id="resultsContainer"></div>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOYuaBDZ5cPbh7RzWAFoHBYq1YZbYPK4A&libraries=places&callback=initialize" async defer>
-      </script>
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js">
-        </script>
-        <link href="https://fonts.googleapis.com/css?family=Poppins|Pacifico" rel="stylesheet">
-    <script>
-
-      var map;
-      var service;
-      var foodFinder;
-      var results;
-
-      function initialize() {
-        var wellington = new google.maps.LatLng(0,0);
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: wellington,
-            zoom: 15
-          });
-
-        $("#statusBar").html("Finding food near you.  (400 meter radius)...")
-      }
-
-      // Called by geolocation 'getCurrentPosition()' below...
-      function setPosition(position) {
-        var coords = position.coords;
-        var posLat = coords.latitude;
-        var posLng = coords.longitude;
-        //sets coordinate pair in 'foodFinder'
-        foodFinder = new google.maps.LatLng(posLat, posLng)
-        //$("#statusBar").html("You are at LAT:" + posLat.toFixed(3) + ", LONG:" + posLng.toFixed(3));
-        makeRequest();
-      }
-
-      function makeRequest() {
-        var request = {
-          location: foodFinder,
-          radius: '400',
-          types: ['restaurant']
-        };
-
-        service = new google.maps.places.PlacesService(map);
-        service.nearbySearch(request, callback);
-      }
-
-      // Callback function from Places API. Gets results, creates DIV elements for each
-      // Checks for callback status OK, populates list w/ results, else, error message
-      function callback(results, status) {
-        console.log(status);
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-          $("#statusBar").html("Here are all of the restaurants near you:" + "<br/>");
-          for (var i = 0; i < results.length; i++) {
-            var place = results[i];
-            // console.log(place.name);
-            var thisResult = "result" + i;
-            var resultDiv = $("<div/>").attr({
-              id: thisResult
-            }).text(place.name);
-            $(document.getElementById("resultsContainer")).append("</br>");
-            $(document.getElementById("resultsContainer")).append(resultDiv);
-          }
-        } else {
-          $(document.getElementById("statusBar")).html("Sorry, no restaurants in range.")
-        }
-      }
-
-      // Checks browser support for geolocation, then gets position
-      // and calls 'setPosition' function
-      if (typeof navigator.geolocation != "undefined") {
-        $(document).ready(navigator.geolocation.getCurrentPosition(setPosition, geoError));
-      } else {
-        alert("This page uses geolocation, and your " +
-              "browser doesn't support it.");
-      }
-
-      function geoError(errorObj) {
-        console.log(errorObj.message);
-      }
-
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOYuaBDZ5cPbh7RzWAFoHBYq1YZbYPK4A&libraries=places&callback=initialize" async defer>
     </script>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js">
+      </script>
+      <link href="https://fonts.googleapis.com/css?family=Poppins|Pacifico" rel="stylesheet">
+  <script>
+
+    var map;
+    var service;
+    var foodFinder;
+    var results;
+
+    function initialize() {
+      var wellington = new google.maps.LatLng(0,0);
+      map = new google.maps.Map(document.getElementById('map'), {
+          center: wellington,
+          zoom: 15
+        });
+
+      $("#statusBar").html("Finding food near you.  (400 meter radius)...")
+    }
+
+    // Called by geolocation 'getCurrentPosition()' below...
+    function setPosition(position) {
+      var coords = position.coords;
+      var posLat = coords.latitude;
+      var posLng = coords.longitude;
+      //sets coordinate pair in 'foodFinder'
+      foodFinder = new google.maps.LatLng(posLat, posLng)
+      //$("#statusBar").html("You are at LAT:" + posLat.toFixed(3) + ", LONG:" + posLng.toFixed(3));
+      makeRequest();
+    }
+
+    function makeRequest() {
+      var request = {
+        location: foodFinder,
+        radius: '400',
+        types: ['restaurant']
+      };
+
+      service = new google.maps.places.PlacesService(map);
+      service.nearbySearch(request, callback);
+    }
+
+    // Callback function from Places API. Gets results, creates DIV elements for each
+    // Checks for callback status OK, populates list w/ results, else, error message
+    function callback(results, status) {
+      console.log(status);
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        $("#statusBar").html("Here are all of the restaurants near you:" + "<br/>");
+        for (var i = 0; i < results.length; i++) {
+          var place = results[i];
+          // console.log(place.name);
+          var thisResult = "result" + i;
+          var resultDiv = $("<div/>").attr({
+            id: thisResult
+          }).text(place.name);
+          $(document.getElementById("resultsContainer")).append("</br>");
+          $(document.getElementById("resultsContainer")).append(resultDiv);
+        }
+      } else {
+        $(document.getElementById("statusBar")).html("Sorry, no restaurants in range.")
+      }
+    }
+
+    // Checks browser support for geolocation, then gets position
+    // and calls 'setPosition' function
+    if (typeof navigator.geolocation != "undefined") {
+      $(document).ready(navigator.geolocation.getCurrentPosition(setPosition, geoError));
+    } else {
+      alert("This page uses geolocation, and your " +
+            "browser doesn't support it.");
+    }
+
+    function geoError(errorObj) {
+      console.log(errorObj.message);
+    }
+
+  </script>
 </body>
 </html>
