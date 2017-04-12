@@ -15,8 +15,12 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+app.get('/favicon.ico', function(request, response) {
+  response.render('public/favicons');
+});
+
 app.get('/async', function(request, response) {
-  response.render('pages/async.ejs');
+  response.render('pages/async');
 });
 
 app.listen(app.get('port'), function() {
