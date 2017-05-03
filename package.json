@@ -10,13 +10,10 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "pg": "4.x",
     "ejs": "2.4.1",
-    "express": "4.13.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "express": "4.13.3",
+    "pg": "4.x",
+    "request": "^2.81.0"
   },
   "keywords": [
     "node",
