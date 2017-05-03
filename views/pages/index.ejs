@@ -32,8 +32,8 @@
     // Called by geolocation 'getCurrentPosition()' above...
     function setPosition(position) {
       var coords = position.coords;
-      var posLat = coords.latitude;
-      var posLng = coords.longitude;
+      var posLat = coords.latitude.toFixed(4);
+      var posLng = coords.longitude.toFixed(4);
       // sets coordinate pair in 'foodFinder'
       gps = posLat + "," + posLng;
       console.log(gps);
@@ -42,12 +42,14 @@
         url: "/gcall",
         data: { "coordinates" : gps }
       })
-      .done(function( msg ) {
-        alert("RESPONSE: " + msg );
+      .done(function(msg) {
+        handleResponse(msg);
       });
     };
 
-    function handleResponse() {};
+    function handleResponse(msg) {
+      console.log("TEST RESPONSE: " + msg );
+    };
 
   </script>
 </body>

@@ -7,9 +7,10 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js apiKey='foobar'"
+    "start": "nodemon index.js"
   },
   "dependencies": {
+    "dotenv": "^4.0.0",
     "ejs": "2.4.1",
     "express": "4.13.3",
     "nodemon": "^1.11.0",
