@@ -19,9 +19,12 @@ app.get('/favicon.ico', function(request, response) {
   response.render('public/favicons');
 });
 
-app.get('/async', function(request, response) {
-  response.render('pages/async');
-});
+app.use(require('./routes/async'));
+app.use(require('./routes/gcall'));
+
+// app.get('/async', function(request, response) {
+//   response.render('pages/async');
+// });
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
