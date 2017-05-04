@@ -7,8 +7,7 @@ router.get('/gcall', function(req, res) {
   gps = req.query.coordinates;
   console.log(gps);
   var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + gps
-    + "&radius=1000&types=food&key=" + apiKey;
-  console.log(url);
+    + "&radius=400&types=restaurant&key=" + apiKey;
 
   request(url, function (error, response, body) {
     if (error) {

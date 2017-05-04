@@ -8,13 +8,13 @@
   <div id="statusBar"></div>
   <div id="map"></div>
   <div id="resultsContainer"></div>
-
+  <!-- jQuery 3.2.1 !-->
   <script
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Poppins|Pacifico" rel="stylesheet">
-
+  <!-- Foodfinder Javascript !-->
   <script>
     // Checks browser support for geolocation, then gets position
     // and calls 'setPosition' function
@@ -25,31 +25,60 @@
             "browser doesn't support it.");
     }
 
+    // Handles errors from the browser location process
     function geoError(errorObj) {
       console.log(errorObj.message);
     }
 
-    // Called by geolocation 'getCurrentPosition()' above...
+    $("#statusBar").html("Finding food near you." + "<br/>" + "  (400 meter radius)...")
+
+    // Called by geolocation 'getCurrentPosition()' above
     function setPosition(position) {
       var coords = position.coords;
       var posLat = coords.latitude.toFixed(4);
       var posLng = coords.longitude.toFixed(4);
       // sets coordinate pair in 'foodFinder'
       gps = posLat + "," + posLng;
-      console.log(gps);
+      //console.log(gps);
       // AJAX request:
       $.get({
         url: "/gcall",
         data: { "coordinates" : gps }
       })
       .done(function(msg) {
-        handleResponse(msg);
+        // calls parseResponse below, sends body of call
+        parseResponse(msg);
       });
-    };
+    }
 
-    function handleResponse(msg) {
-      console.log("TEST RESPONSE: " + msg );
-    };
+    // parses JSON object from AJAX call, prints info for each location item
+    function parseResponse(msg) {
+      var msgParse = JSON.parse(msg);
+      var results = msgParse.results;
+      Object.keys(results).forEach(function(item) {
+        console.log(item, results[item].name);
+      });
+      //buildHTML(results);
+    }
+
+    // function buildHTML(results) {
+    //   $("#statusBar").html("Here are all of the restaurants near you:" + "<br/>");
+    //   Object.keys(results).forEach(function(item) {
+    //    console.log(item, results[item].name);
+    //   });
+    //   for (var i = 0; i < results.length; i++) {
+    //     var place = results[i];
+    //     // console.log(place.name);
+    //     var thisResult = "result" + i;
+    //     var resultDiv = $("<div/>").attr({
+    //       id: thisResult
+    //     }).text(place.name);
+    //     $(document.getElementById("resultsContainer")).append("</br>");
+    //     $(document.getElementById("resultsContainer")).append(resultDiv);
+    //   }
+    // } else {
+    //   $(document.getElementById("statusBar")).html("Sorry, no restaurants in range.")
+    // }
 
   </script>
 </body>
