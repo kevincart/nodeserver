@@ -18,29 +18,35 @@
   <script>
     // Checks browser support for geolocation, then gets position
     // and calls 'setPosition' function
-    if (typeof navigator.geolocation != "undefined") {
-      $(document).ready(navigator.geolocation.getCurrentPosition(setPosition, geoError));
-    } else {
-      alert("This page uses geolocation, and your " +
-            "browser doesn't support it.");
+    $(document).ready(getPosition);
+
+    function getPosition () {
+      if (typeof navigator.geolocation != "undefined") {
+        $("#statusBar").html("Finding food near you." + "<br/>" + "  (400 meter radius)...")
+        navigator.geolocation.getCurrentPosition(setPosition, geoError);
+      } else {
+        alert("This page uses geolocation, and your " +
+              "browser doesn't support it.");
+      }
     }
 
-    // Handles errors from the browser location process
+    // Handles errors from the browser location check
     function geoError(errorObj) {
       console.log(errorObj.message);
     }
 
-    $("#statusBar").html("Finding food near you." + "<br/>" + "  (400 meter radius)...")
-
-    // Called by geolocation 'getCurrentPosition()' above
+    // Called by geolocation 'getCurrentPosition()' within 'getPosition()' above
     function setPosition(position) {
       var coords = position.coords;
       var posLat = coords.latitude.toFixed(4);
       var posLng = coords.longitude.toFixed(4);
       // sets coordinate pair in 'foodFinder'
       gps = posLat + "," + posLng;
-      //console.log(gps);
-      // AJAX request:
+      makeRequest(gps);
+    }
+
+    // AJAX request call to /gCall
+    function makeRequest(gps) {
       $.get({
         url: "/gcall",
         data: { "coordinates" : gps }
