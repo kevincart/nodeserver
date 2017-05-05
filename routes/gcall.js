@@ -1,13 +1,15 @@
 var express = require('express');
 var request = require('request');
 var router = express.Router();
-var apiKey = process.env.API_KEY;
 
 router.get('/gcall', function(req, res) {
-  gps = req.query.coordinates;
+  let gps = req.query.coordinates;
+  let radius = 400;
+  let apiKey = process.env.API_KEY;
+
   console.log(gps);
   var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + gps
-    + "&radius=400&types=restaurant&key=" + apiKey;
+    + "&radius=" +  radius + "&types=restaurant&key=" + apiKey;
 
   request(url, function (error, response, body) {
     if (error) {

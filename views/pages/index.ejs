@@ -8,12 +8,7 @@
   <div id="statusBar"></div>
   <div id="map"></div>
   <div id="resultsContainer"></div>
-  <!-- jQuery 3.2.1 !-->
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.js"
-  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-  crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css?family=Poppins|Pacifico" rel="stylesheet">
+
   <!-- Foodfinder Javascript !-->
   <script>
     // Checks browser support for geolocation, then gets position
@@ -61,30 +56,41 @@
     function parseResponse(msg) {
       var msgParse = JSON.parse(msg);
       var results = msgParse.results;
-      Object.keys(results).forEach(function(item) {
-        console.log(item, results[item].name);
-      });
-      //buildHTML(results);
+      // Object.keys(results).forEach(function(item) {
+      //   console.log(item, results[item].name);
+      // });
+      buildHTML(results);
     }
 
-    // function buildHTML(results) {
-    //   $("#statusBar").html("Here are all of the restaurants near you:" + "<br/>");
-    //   Object.keys(results).forEach(function(item) {
-    //    console.log(item, results[item].name);
-    //   });
-    //   for (var i = 0; i < results.length; i++) {
-    //     var place = results[i];
-    //     // console.log(place.name);
-    //     var thisResult = "result" + i;
-    //     var resultDiv = $("<div/>").attr({
-    //       id: thisResult
-    //     }).text(place.name);
-    //     $(document.getElementById("resultsContainer")).append("</br>");
-    //     $(document.getElementById("resultsContainer")).append(resultDiv);
-    //   }
-    // } else {
-    //   $(document.getElementById("statusBar")).html("Sorry, no restaurants in range.")
-    // }
+    function buildHTML(results) {
+      $("#statusBar").html("Here are all of the restaurants near you:" + "<br/>");
+      if (Object.keys(results).length == 0) {
+        $(document.getElementById("statusBar")).html("Sorry, no restaurants in range.")
+      };
+      // If there are results, create a div, with unique id, and write to DOM
+      Object.keys(results).forEach(function(item) {
+      //  console.log(item, results[item].name);
+       var place = results[item];
+       console.log(item + " " + place.name + " - " + place.vicinity);
+       var thisResult = "result" + item;
+       var thisDetail = "detail" + item;
+       var resultDiv = $("<div/>").attr({
+         id: thisResult,
+         onclick: "detailToggle(this)"
+       }).text(place.name);
+       var detailDiv = $("<div/>").attr({
+         id: thisDetail,
+         class: "detail"
+       }).text(place.vicinity);
+       $(document.getElementById("resultsContainer")).append("</br>");
+       $(document.getElementById("resultsContainer")).append(resultDiv);
+       $(document.getElementById("resultsContainer")).append(detailDiv);
+       });
+    }
+
+    function detailToggle (element) {
+      $(element).next().toggleClass("detailShow");
+    }
 
   </script>
 </body>
