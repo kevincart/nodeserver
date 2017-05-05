@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Food Finder</title>
-  <% include ../partials/favicons.ejs %>
-  <link rel="stylesheet" href="/stylesheets/styles.css" type="text/css">
-</head>
+<% include ../partials/head.ejs %>
 <body>
   <div id="header">
     <div id="logo">
@@ -17,82 +9,89 @@
   <div id="map"></div>
   <div id="resultsContainer"></div>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOYuaBDZ5cPbh7RzWAFoHBYq1YZbYPK4A&libraries=places&callback=initialize" async defer>
-    </script>
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js">
-      </script>
-      <link href="https://fonts.googleapis.com/css?family=Poppins|Pacifico" rel="stylesheet">
+  <!-- Foodfinder Javascript !-->
   <script>
+    // Checks browser support for geolocation, then gets position
+    // and calls 'setPosition' function
+    $(document).ready(getPosition);
 
-    var map;
-    var service;
-    var foodFinder;
-    var results;
-
-    function initialize() {
-      var wellington = new google.maps.LatLng(0,0);
-      map = new google.maps.Map(document.getElementById('map'), {
-          center: wellington,
-          zoom: 15
-        });
-
-      $("#statusBar").html("Finding food near you.  (400 meter radius)...")
-    }
-
-    // Called by geolocation 'getCurrentPosition()' below...
-    function setPosition(position) {
-      var coords = position.coords;
-      var posLat = coords.latitude;
-      var posLng = coords.longitude;
-      //sets coordinate pair in 'foodFinder'
-      foodFinder = new google.maps.LatLng(posLat, posLng)
-      //$("#statusBar").html("You are at LAT:" + posLat.toFixed(3) + ", LONG:" + posLng.toFixed(3));
-      makeRequest();
-    }
-
-    function makeRequest() {
-      var request = {
-        location: foodFinder,
-        radius: '400',
-        types: ['restaurant']
-      };
-
-      service = new google.maps.places.PlacesService(map);
-      service.nearbySearch(request, callback);
-    }
-
-    // Callback function from Places API. Gets results, creates DIV elements for each
-    // Checks for callback status OK, populates list w/ results, else, error message
-    function callback(results, status) {
-      console.log(status);
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        $("#statusBar").html("Here are all of the restaurants near you:" + "<br/>");
-        for (var i = 0; i < results.length; i++) {
-          var place = results[i];
-          // console.log(place.name);
-          var thisResult = "result" + i;
-          var resultDiv = $("<div/>").attr({
-            id: thisResult
-          }).text(place.name);
-          $(document.getElementById("resultsContainer")).append("</br>");
-          $(document.getElementById("resultsContainer")).append(resultDiv);
-        }
+    function getPosition () {
+      if (typeof navigator.geolocation != "undefined") {
+        $("#statusBar").html("Finding food near you." + "<br/>" + "  (400 meter radius)...")
+        navigator.geolocation.getCurrentPosition(setPosition, geoError);
       } else {
-        $(document.getElementById("statusBar")).html("Sorry, no restaurants in range.")
+        alert("This page uses geolocation, and your " +
+              "browser doesn't support it.");
       }
     }
 
-    // Checks browser support for geolocation, then gets position
-    // and calls 'setPosition' function
-    if (typeof navigator.geolocation != "undefined") {
-      $(document).ready(navigator.geolocation.getCurrentPosition(setPosition, geoError));
-    } else {
-      alert("This page uses geolocation, and your " +
-            "browser doesn't support it.");
-    }
-
+    // Handles errors from the browser location check
     function geoError(errorObj) {
       console.log(errorObj.message);
+    }
+
+    // Called by geolocation 'getCurrentPosition()' within 'getPosition()' above
+    function setPosition(position) {
+      var coords = position.coords;
+      var posLat = coords.latitude.toFixed(4);
+      var posLng = coords.longitude.toFixed(4);
+      // sets coordinate pair in 'foodFinder'
+      gps = posLat + "," + posLng;
+      makeRequest(gps);
+    }
+
+    // AJAX request call to /gCall
+    function makeRequest(gps) {
+      $.get({
+        url: "/gcall",
+        data: { "coordinates" : gps }
+      })
+      .done(function(msg) {
+        // calls parseResponse below, sends body of call
+        parseResponse(msg);
+      });
+    }
+
+    // parses JSON object from AJAX call, prints info for each location item
+    function parseResponse(msg) {
+      var msgParse = JSON.parse(msg);
+      var results = msgParse.results;
+      // Object.keys(results).forEach(function(item) {
+      //   console.log(item, results[item].name);
+      // });
+      buildHTML(results);
+    }
+
+    function buildHTML(results) {
+      $("#statusBar").html("Here are all of the restaurants near you:" + "<br/>");
+      if (Object.keys(results).length == 0) {
+        $(document.getElementById("statusBar")).html("Sorry, no restaurants in range.")
+      };
+      // If there are results, create a div, with unique id, and write to DOM
+      Object.keys(results).forEach(function(item) {
+       var place = results[item];
+       console.log(item + " " + place.name + " - " + place.vicinity);
+       var thisResult = "result" + item;
+       var thisDetail = "detail" + item;
+       // Specify contents of result, (the place name)
+       var resultDiv = $("<div/>").attr({
+         id: thisResult,
+         class: "result",
+         onclick: "detailToggle(this)"
+       }).text(place.name);
+       // Specify contents of detail, (the place vicinity)
+       var detailDiv = $("<div/>").attr({
+         id: thisDetail,
+         class: "detail"
+       }).text(place.vicinity);
+       $(document.getElementById("resultsContainer")).append("</br>");
+       $(document.getElementById("resultsContainer")).append(resultDiv);
+       $(document.getElementById("resultsContainer")).append(detailDiv);
+       });
+    }
+
+    function detailToggle (element) {
+      $(element).next().toggleClass("detailShow");
     }
 
   </script>
