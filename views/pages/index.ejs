@@ -69,15 +69,17 @@
       };
       // If there are results, create a div, with unique id, and write to DOM
       Object.keys(results).forEach(function(item) {
-      //  console.log(item, results[item].name);
        var place = results[item];
        console.log(item + " " + place.name + " - " + place.vicinity);
        var thisResult = "result" + item;
        var thisDetail = "detail" + item;
+       // Specify contents of result, (the place name)
        var resultDiv = $("<div/>").attr({
          id: thisResult,
+         class: "result",
          onclick: "detailToggle(this)"
        }).text(place.name);
+       // Specify contents of detail, (the place vicinity)
        var detailDiv = $("<div/>").attr({
          id: thisDetail,
          class: "detail"
