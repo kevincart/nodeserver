@@ -25,17 +25,18 @@
       }
     }
 
-    // Handles errors from the browser location check
+    // Handle errors from the browser location check
     function geoError(errorObj) {
       console.log(errorObj.message);
     }
 
     // Called by geolocation 'getCurrentPosition()' within 'getPosition()' above
+    // Trims and stores latitude and longitude
     function setPosition(position) {
       var coords = position.coords;
       var posLat = coords.latitude.toFixed(4);
       var posLng = coords.longitude.toFixed(4);
-      // sets coordinate pair in 'foodFinder'
+      // sets coordinate pair to variable 'gps' used in API call
       gps = posLat + "," + posLng;
       makeRequest(gps);
     }
@@ -47,7 +48,7 @@
         data: { "coordinates" : gps }
       })
       .done(function(msg) {
-        // calls parseResponse below, sends body of call
+      // calls parseResponse below, sends body of call
         parseResponse(msg);
       });
     }
@@ -56,18 +57,15 @@
     function parseResponse(msg) {
       var msgParse = JSON.parse(msg);
       var results = msgParse.results;
-      // Object.keys(results).forEach(function(item) {
-      //   console.log(item, results[item].name);
-      // });
       buildHTML(results);
     }
 
     function buildHTML(results) {
       $("#statusBar").html("Here are all of the restaurants near you:" + "<br/>");
+      // If there are results, create a div, with unique id, and write to DOM
       if (Object.keys(results).length == 0) {
         $(document.getElementById("statusBar")).html("Sorry, no restaurants in range.")
       };
-      // If there are results, create a div, with unique id, and write to DOM
       Object.keys(results).forEach(function(item) {
        var place = results[item];
        console.log(item + " " + place.name + " - " + place.vicinity);
@@ -84,7 +82,7 @@
          id: thisDetail,
          class: "detail"
        }).text(place.vicinity);
-       $(document.getElementById("resultsContainer")).append("</br>");
+       //$(document.getElementById("resultsContainer")).append("</br>");
        $(document.getElementById("resultsContainer")).append(resultDiv);
        $(document.getElementById("resultsContainer")).append(detailDiv);
        });

@@ -4,9 +4,6 @@
       padding: 0;
       background-color: #bd3743;
     }
-    #map {
-      display: none;
-    }
     #logo {
       font-family: 'Pacifico', cursive;
       margin-left: 14px;
@@ -27,23 +24,28 @@
       color: white;
       font-family: "Poppins", sans-serif;
       font-size: 16px;
-      margin: 0px 10px 0px 20px;
+      margin: 0px 10px 30px 20px;
     }
     #resultsContainer {
       display: block;
       color: white;
       font-family: "Poppins", sans-serif;
       font-size: 16px;
-      margin: 5px 10px 30px 35px;
+      margin: 10px 10px 10px 35px;
     }
     .result {
       text-decoration: underline;
+      margin-bottom: 5px;
     }
     .detail {
-      display: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.5s linear;
       margin-left: 20px;
+      margin-bottom: 12px;
       font-size: 14px;
     }
     .detailShow {
-      display: block;
+      visibility: visible;
+      opacity: 1;
     }
