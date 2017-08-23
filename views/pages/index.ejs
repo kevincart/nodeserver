@@ -5,8 +5,8 @@
       <p>Food Finder</p>
     </div>
   </div>
+  <button type="button" id="btn_refresh" class="btn refresh">&#8634</button>
   <div id="statusBar"></div>
-  <div id="map"></div>
   <div id="resultsContainer"></div>
 
   <!-- Foodfinder Javascript !-->
@@ -16,6 +16,8 @@
     $(document).ready(getPosition);
 
     function getPosition () {
+      $("#statusBar").html("");
+      $("#resultsContainer").html("");
       if (typeof navigator.geolocation != "undefined") {
         $("#statusBar").html("Finding food near you." + "<br/>" + "  (400 meter radius)...")
         navigator.geolocation.getCurrentPosition(setPosition, geoError);
@@ -91,6 +93,11 @@
     function detailToggle (element) {
       $(element).next().toggleClass("detailShow");
     }
+
+    // Get refresh button
+    const btn_refresh = document.getElementById("btn_refresh");
+    // Assign event handlers
+    btn_refresh.addEventListener("click", getPosition);
 
   </script>
 </body>
