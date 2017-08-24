@@ -1,6 +1,7 @@
 // Require dependencies
 var express = require('express');
 var app = express();
+var exports = module.exports = {};
 require('dotenv').load();
 
 // Set server port
