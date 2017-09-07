@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+<testsuite name="Server Test" errors="0" tests="0" failures="0" time="0.001" timestamp="2017-08-24T21:31:34">
+</testsuite>
+<testsuite name="Server Test.Fake test" errors="0" tests="1" failures="1" time="0.004" timestamp="2017-08-24T21:31:34">
+  <testcase classname="Server Test.Fake test" name="does the math" time="0.003"><failure type="expect" message="Expected &amp;apos;4&amp;apos; to be 4.">Error: Expected &amp;apos;4&amp;apos; to be 4.
+    at new jasmine.ExpectationResult (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:114:32)
+    at matchersClass.toBe (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:1316:29)
+    at jasmine.Spec.&amp;lt;anonymous&amp;gt; (/Users/kevincartwright/nodeserver/spec/foodfinder_spec.js:12:23)
+    at jasmine.Block.execute (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:1145:17)
+    at jasmine.Queue.next_ (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2177:31)
+    at jasmine.Queue.start (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2130:8)
+    at jasmine.Spec.execute (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2458:14)
+    at jasmine.Queue.next_ (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2177:31)
+    at jasmine.Queue.start (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2130:8)
+    at jasmine.Suite.execute (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2604:14)</failure><failure type="expect" message="ReferenceError: done is not defined">ReferenceError: done is not defined
+    at jasmine.Spec.&amp;lt;anonymous&amp;gt; (/Users/kevincartwright/nodeserver/spec/foodfinder_spec.js:13:9)
+    at jasmine.Block.execute (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:1145:17)
+    at jasmine.Queue.next_ (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2177:31)
+    at jasmine.Queue.start (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2130:8)
+    at jasmine.Spec.execute (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2458:14)
+    at jasmine.Queue.next_ (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2177:31)
+    at jasmine.Queue.start (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2130:8)
+    at jasmine.Suite.execute (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2604:14)
+    at jasmine.Queue.next_ (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2177:31)
+    at jasmine.Queue.start (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2130:8)</failure></testcase>
+</testsuite>
+<testsuite name="Server Test.GET /" errors="0" tests="2" failures="1" time="0.041" timestamp="2017-08-24T21:31:34">
+  <testcase classname="Server Test.GET /" name="returns status code 200" time="0.028"></testcase>
+  <testcase classname="Server Test.GET /" name="returns index.html" time="0.012"><failure type="expect" message="Expected &amp;apos;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+&amp;lt;head&amp;gt;
+  &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+  &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&amp;gt;
+  &amp;lt;title&amp;gt;Food Finder&amp;lt;/title&amp;gt;
+  &amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;57x57&amp;quot; href=&amp;quot;/favicons/apple-icon-57x57.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;60x60&amp;quot; href=&amp;quot;/favicons/apple-icon-60x60.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;72x72&amp;quot; href=&amp;quot;/favicons/apple-icon-72x72.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;76x76&amp;quot; href=&amp;quot;/favicons/apple-icon-76x76.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;114x114&amp;quot; href=&amp;quot;/favicons/apple-icon-114x114.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;120x120&amp;quot; href=&amp;quot;/favicons/apple-icon-120x120.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;144x144&amp;quot; href=&amp;quot;/favicons/apple-icon-144x144.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;152x152&amp;quot; href=&amp;quot;/favicons/apple-icon-152x152.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;180x180&amp;quot; href=&amp;quot;/favicons/apple-icon-180x180.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/png&amp;quot; sizes=&amp;quot;192x192&amp;quot;  href=&amp;quot;/favicons/android-icon-192x192.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/png&amp;quot; sizes=&amp;quot;32x32&amp;quot; href=&amp;quot;/favicons/favicon-32x32.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/png&amp;quot; sizes=&amp;quot;96x96&amp;quot; href=&amp;quot;/favicons/favicon-96x96.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/png&amp;quot; sizes=&amp;quot;16x16&amp;quot; href=&amp;quot;/favicons/favicon-16x16.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;manifest&amp;quot; href=&amp;quot;/favicons/manifest.json&amp;quot;&amp;gt;
+&amp;lt;meta name=&amp;quot;msapplication-TileColor&amp;quot; content=&amp;quot;#ffffff&amp;quot;&amp;gt;
+&amp;lt;meta name=&amp;quot;msapplication-TileImage&amp;quot; content=&amp;quot;/ms-icon-144x144.png&amp;quot;&amp;gt;
+&amp;lt;meta name=&amp;quot;theme-color&amp;quot; content=&amp;quot;#ffffff&amp;quot;&amp;gt;
+
+  &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;/css/style.css&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt;
+  &amp;lt;link href=&amp;quot;https://fonts.googleapis.com/css?family=Poppins|Pacifico&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+  &amp;lt;!-- jQuery 3.2.1 !--&amp;gt;
+  &amp;lt;script
+  src=&amp;quot;https://code.jquery.com/jquery-3.2.1.js&amp;quot;
+  integrity=&amp;quot;sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=&amp;quot;
+  crossorigin=&amp;quot;anonymous&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;/head&amp;gt;
+
+&amp;lt;body&amp;gt;
+  &amp;lt;div id=&amp;quot;header&amp;quot;&amp;gt;
+    &amp;lt;div id=&amp;quot;logo&amp;quot;&amp;gt;
+      &amp;lt;p&amp;gt;Food Finder&amp;lt;/p&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+  &amp;lt;button type=&amp;quot;button&amp;quot; id=&amp;quot;btn_refresh&amp;quot; class=&amp;quot;btn refresh&amp;quot;&amp;gt;&amp;#8634&amp;lt;/button&amp;gt;
+  &amp;lt;div id=&amp;quot;statusBar&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;div id=&amp;quot;resultsContainer&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+  &amp;lt;!-- Foodfinder Javascript !--&amp;gt;
+  &amp;lt;script&amp;gt;
+    // Checks browser support for geolocation, then gets position
+    // and calls &amp;apos;setPosition&amp;apos; function
+    $(document).ready(getPosition);
+
+    function getPosition () {
+      $(&amp;quot;#statusBar&amp;quot;).html(&amp;quot;&amp;quot;);
+      $(&amp;quot;#resultsContainer&amp;quot;).html(&amp;quot;&amp;quot;);
+      if (typeof navigator.geolocation != &amp;quot;undefined&amp;quot;) {
+        $(&amp;quot;#statusBar&amp;quot;).html(&amp;quot;Finding food near you.&amp;quot; + &amp;quot;&amp;lt;br/&amp;gt;&amp;quot; + &amp;quot;  (400 meter radius)...&amp;quot;)
+        navigator.geolocation.getCurrentPosition(setPosition, geoError);
+      } else {
+        alert(&amp;quot;This page uses geolocation, and your &amp;quot; +
+              &amp;quot;browser doesn&amp;apos;t support it.&amp;quot;);
+      }
+    }
+
+    // Handle errors from the browser location check
+    function geoError(errorObj) {
+      console.log(errorObj.message);
+    }
+
+    // Called by geolocation &amp;apos;getCurrentPosition()&amp;apos; within &amp;apos;getPosition()&amp;apos; above
+    // Trims and stores latitude and longitude
+    function setPosition(position) {
+      var coords = position.coords;
+      var posLat = coords.latitude.toFixed(4);
+      var posLng = coords.longitude.toFixed(4);
+      // sets coordinate pair to variable &amp;apos;gps&amp;apos; used in API call
+      gps = posLat + &amp;quot;,&amp;quot; + posLng;
+      makeRequest(gps);
+    }
+
+    // AJAX request call to /gCall
+    function makeRequest(gps) {
+      $.get({
+        url: &amp;quot;/gcall&amp;quot;,
+        data: { &amp;quot;coordinates&amp;quot; : gps }
+      })
+      .done(function(msg) {
+      // calls parseResponse below, sends body of call
+        parseResponse(msg);
+      });
+    }
+
+    // parses JSON object from AJAX call, prints info for each location item
+    function parseResponse(msg) {
+      var msgParse = JSON.parse(msg);
+      var results = msgParse.results;
+      buildHTML(results);
+    }
+
+    function buildHTML(results) {
+      $(&amp;quot;#statusBar&amp;quot;).html(&amp;quot;Here are all of the restaurants near you:&amp;quot; + &amp;quot;&amp;lt;br/&amp;gt;&amp;quot;);
+      // If there are results, create a div, with unique id, and write to DOM
+      if (Object.keys(results).length == 0) {
+        $(document.getElementById(&amp;quot;statusBar&amp;quot;)).html(&amp;quot;Sorry, no restaurants in range.&amp;quot;)
+      };
+      Object.keys(results).forEach(function(item) {
+       var place = results[item];
+       console.log(item + &amp;quot; &amp;quot; + place.name + &amp;quot; - &amp;quot; + place.vicinity);
+       var thisResult = &amp;quot;result&amp;quot; + item;
+       var thisDetail = &amp;quot;detail&amp;quot; + item;
+       // Specify contents of result, (the place name)
+       var resultDiv = $(&amp;quot;&amp;lt;div/&amp;gt;&amp;quot;).attr({
+         id: thisResult,
+         class: &amp;quot;result&amp;quot;,
+         onclick: &amp;quot;detailToggle(this)&amp;quot;
+       }).text(place.name);
+       // Specify contents of detail, (the place vicinity)
+       var detailDiv = $(&amp;quot;&amp;lt;div/&amp;gt;&amp;quot;).attr({
+         id: thisDetail,
+         class: &amp;quot;detail&amp;quot;
+       }).text(place.vicinity);
+       //$(document.getElementById(&amp;quot;resultsContainer&amp;quot;)).append(&amp;quot;&amp;lt;/br&amp;gt;&amp;quot;);
+       $(document.getElementById(&amp;quot;resultsContainer&amp;quot;)).append(resultDiv);
+       $(document.getElementById(&amp;quot;resultsContainer&amp;quot;)).append(detailDiv);
+       });
+    }
+
+    function detailToggle (element) {
+      $(element).next().toggleClass(&amp;quot;detailShow&amp;quot;);
+    }
+
+    // Get refresh button
+    const btn_refresh = document.getElementById(&amp;quot;btn_refresh&amp;quot;);
+    // Assign event handlers
+    btn_refresh.addEventListener(&amp;quot;click&amp;quot;, getPosition);
+
+  &amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&amp;apos; to be &amp;apos;K&amp;apos;.">Error: Expected &amp;apos;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+&amp;lt;head&amp;gt;
+  &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+  &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&amp;gt;
+  &amp;lt;title&amp;gt;Food Finder&amp;lt;/title&amp;gt;
+  &amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;57x57&amp;quot; href=&amp;quot;/favicons/apple-icon-57x57.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;60x60&amp;quot; href=&amp;quot;/favicons/apple-icon-60x60.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;72x72&amp;quot; href=&amp;quot;/favicons/apple-icon-72x72.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;76x76&amp;quot; href=&amp;quot;/favicons/apple-icon-76x76.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;114x114&amp;quot; href=&amp;quot;/favicons/apple-icon-114x114.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;120x120&amp;quot; href=&amp;quot;/favicons/apple-icon-120x120.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;144x144&amp;quot; href=&amp;quot;/favicons/apple-icon-144x144.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;152x152&amp;quot; href=&amp;quot;/favicons/apple-icon-152x152.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;apple-touch-icon&amp;quot; sizes=&amp;quot;180x180&amp;quot; href=&amp;quot;/favicons/apple-icon-180x180.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/png&amp;quot; sizes=&amp;quot;192x192&amp;quot;  href=&amp;quot;/favicons/android-icon-192x192.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/png&amp;quot; sizes=&amp;quot;32x32&amp;quot; href=&amp;quot;/favicons/favicon-32x32.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/png&amp;quot; sizes=&amp;quot;96x96&amp;quot; href=&amp;quot;/favicons/favicon-96x96.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/png&amp;quot; sizes=&amp;quot;16x16&amp;quot; href=&amp;quot;/favicons/favicon-16x16.png&amp;quot;&amp;gt;
+&amp;lt;link rel=&amp;quot;manifest&amp;quot; href=&amp;quot;/favicons/manifest.json&amp;quot;&amp;gt;
+&amp;lt;meta name=&amp;quot;msapplication-TileColor&amp;quot; content=&amp;quot;#ffffff&amp;quot;&amp;gt;
+&amp;lt;meta name=&amp;quot;msapplication-TileImage&amp;quot; content=&amp;quot;/ms-icon-144x144.png&amp;quot;&amp;gt;
+&amp;lt;meta name=&amp;quot;theme-color&amp;quot; content=&amp;quot;#ffffff&amp;quot;&amp;gt;
+
+  &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;/css/style.css&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt;
+  &amp;lt;link href=&amp;quot;https://fonts.googleapis.com/css?family=Poppins|Pacifico&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+  &amp;lt;!-- jQuery 3.2.1 !--&amp;gt;
+  &amp;lt;script
+  src=&amp;quot;https://code.jquery.com/jquery-3.2.1.js&amp;quot;
+  integrity=&amp;quot;sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=&amp;quot;
+  crossorigin=&amp;quot;anonymous&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;/head&amp;gt;
+
+&amp;lt;body&amp;gt;
+  &amp;lt;div id=&amp;quot;header&amp;quot;&amp;gt;
+    &amp;lt;div id=&amp;quot;logo&amp;quot;&amp;gt;
+      &amp;lt;p&amp;gt;Food Finder&amp;lt;/p&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+  &amp;lt;button type=&amp;quot;button&amp;quot; id=&amp;quot;btn_refresh&amp;quot; class=&amp;quot;btn refresh&amp;quot;&amp;gt;&amp;#8634&amp;lt;/button&amp;gt;
+  &amp;lt;div id=&amp;quot;statusBar&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;div id=&amp;quot;resultsContainer&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+  &amp;lt;!-- Foodfinder Javascript !--&amp;gt;
+  &amp;lt;script&amp;gt;
+    // Checks browser support for geolocation, then gets position
+    // and calls &amp;apos;setPosition&amp;apos; function
+    $(document).ready(getPosition);
+
+    function getPosition () {
+      $(&amp;quot;#statusBar&amp;quot;).html(&amp;quot;&amp;quot;);
+      $(&amp;quot;#resultsContainer&amp;quot;).html(&amp;quot;&amp;quot;);
+      if (typeof navigator.geolocation != &amp;quot;undefined&amp;quot;) {
+        $(&amp;quot;#statusBar&amp;quot;).html(&amp;quot;Finding food near you.&amp;quot; + &amp;quot;&amp;lt;br/&amp;gt;&amp;quot; + &amp;quot;  (400 meter radius)...&amp;quot;)
+        navigator.geolocation.getCurrentPosition(setPosition, geoError);
+      } else {
+        alert(&amp;quot;This page uses geolocation, and your &amp;quot; +
+              &amp;quot;browser doesn&amp;apos;t support it.&amp;quot;);
+      }
+    }
+
+    // Handle errors from the browser location check
+    function geoError(errorObj) {
+      console.log(errorObj.message);
+    }
+
+    // Called by geolocation &amp;apos;getCurrentPosition()&amp;apos; within &amp;apos;getPosition()&amp;apos; above
+    // Trims and stores latitude and longitude
+    function setPosition(position) {
+      var coords = position.coords;
+      var posLat = coords.latitude.toFixed(4);
+      var posLng = coords.longitude.toFixed(4);
+      // sets coordinate pair to variable &amp;apos;gps&amp;apos; used in API call
+      gps = posLat + &amp;quot;,&amp;quot; + posLng;
+      makeRequest(gps);
+    }
+
+    // AJAX request call to /gCall
+    function makeRequest(gps) {
+      $.get({
+        url: &amp;quot;/gcall&amp;quot;,
+        data: { &amp;quot;coordinates&amp;quot; : gps }
+      })
+      .done(function(msg) {
+      // calls parseResponse below, sends body of call
+        parseResponse(msg);
+      });
+    }
+
+    // parses JSON object from AJAX call, prints info for each location item
+    function parseResponse(msg) {
+      var msgParse = JSON.parse(msg);
+      var results = msgParse.results;
+      buildHTML(results);
+    }
+
+    function buildHTML(results) {
+      $(&amp;quot;#statusBar&amp;quot;).html(&amp;quot;Here are all of the restaurants near you:&amp;quot; + &amp;quot;&amp;lt;br/&amp;gt;&amp;quot;);
+      // If there are results, create a div, with unique id, and write to DOM
+      if (Object.keys(results).length == 0) {
+        $(document.getElementById(&amp;quot;statusBar&amp;quot;)).html(&amp;quot;Sorry, no restaurants in range.&amp;quot;)
+      };
+      Object.keys(results).forEach(function(item) {
+       var place = results[item];
+       console.log(item + &amp;quot; &amp;quot; + place.name + &amp;quot; - &amp;quot; + place.vicinity);
+       var thisResult = &amp;quot;result&amp;quot; + item;
+       var thisDetail = &amp;quot;detail&amp;quot; + item;
+       // Specify contents of result, (the place name)
+       var resultDiv = $(&amp;quot;&amp;lt;div/&amp;gt;&amp;quot;).attr({
+         id: thisResult,
+         class: &amp;quot;result&amp;quot;,
+         onclick: &amp;quot;detailToggle(this)&amp;quot;
+       }).text(place.name);
+       // Specify contents of detail, (the place vicinity)
+       var detailDiv = $(&amp;quot;&amp;lt;div/&amp;gt;&amp;quot;).attr({
+         id: thisDetail,
+         class: &amp;quot;detail&amp;quot;
+       }).text(place.vicinity);
+       //$(document.getElementById(&amp;quot;resultsContainer&amp;quot;)).append(&amp;quot;&amp;lt;/br&amp;gt;&amp;quot;);
+       $(document.getElementById(&amp;quot;resultsContainer&amp;quot;)).append(resultDiv);
+       $(document.getElementById(&amp;quot;resultsContainer&amp;quot;)).append(detailDiv);
+       });
+    }
+
+    function detailToggle (element) {
+      $(element).next().toggleClass(&amp;quot;detailShow&amp;quot;);
+    }
+
+    // Get refresh button
+    const btn_refresh = document.getElementById(&amp;quot;btn_refresh&amp;quot;);
+    // Assign event handlers
+    btn_refresh.addEventListener(&amp;quot;click&amp;quot;, getPosition);
+
+  &amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&amp;apos; to be &amp;apos;K&amp;apos;.
+    at new jasmine.ExpectationResult (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:114:32)
+    at matchersClass.toBe (/Users/kevincartwright/nodeserver/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:1316:29)
+    at Request._callback (/Users/kevincartwright/nodeserver/spec/foodfinder_spec.js:27:22)
+    at Request.self.callback (/Users/kevincartwright/nodeserver/node_modules/request/request.js:188:22)
+    at emitTwo (events.js:125:13)
+    at Request.emit (events.js:213:7)
+    at Request.&amp;lt;anonymous&amp;gt; (/Users/kevincartwright/nodeserver/node_modules/request/request.js:1171:10)
+    at emitOne (events.js:115:13)
+    at Request.emit (events.js:210:7)
+    at IncomingMessage.&amp;lt;anonymous&amp;gt; (/Users/kevincartwright/nodeserver/node_modules/request/request.js:1091:12)</failure></testcase>
+</testsuite>
+</testsuites>

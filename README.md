@@ -18,6 +18,10 @@ Start the server with 'npm start' command on the command line from the server ro
 
 Food Finder is work in progress, so thank you for sending feedback to 123foodfinder@gmail.com
 
+### Testing
+Testing is currently done via a basic implementation of 'Jasmine-node'.
+Run `jasmine-node spec/foodfinder_spec.js` to see testing in action!
+
 ...
 
 2017 MIT License. Kevin Cartwright.

@@ -29,7 +29,7 @@ app.get('/favicon.ico', function(request, response) {
 app.use(require('./routes/gcall'));
 
 // Begin listening at specified port
-app.listen(app.get('port'), function() {
+var server = app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
